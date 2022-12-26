@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\KategoriProduk;
 use Illuminate\Support\Facades\File; 
 
 class ProdukController extends Controller
@@ -15,8 +16,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = Produk::all();
-        return view ('admin.produk.HomeProduk',compact('produk'));
+        $produk = Produk::with('kategori_produk')->paginate();
+        return view ('admin.produk.HomeProduk', compact('produk'));
     }
 
     /**
@@ -26,7 +27,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.produk.Add');
+        $kategori_produk = KategoriProduk::all();
+        return view('admin.produk.Add',compact ('kategori_produk'));
     }
 
     /**
@@ -40,7 +42,8 @@ class ProdukController extends Controller
         $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required',
-            'foto' => 'image',
+            'kategori_produk_id' => 'required',
+            'foto' => 'required',
             'deskripsi' => 'required'
         ]);
         
@@ -56,17 +59,31 @@ class ProdukController extends Controller
             $status='Nonaktif';
         }
 
+        $show='';
+        if($request->show)
+        {
+            $show='Aktif';
+        }else{
+            $show='Nonaktif';
+        }
+
         $produk->status=$status;
-        $produk->deskripsi=$request->deskripsi;
+
+        $produk->show=$show;
+        
+        $produk->kategori_produk_id=$request->kategori_produk_id;
 
         if ($request->file('foto')) {
             $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
             $produk->foto = $request->file('foto')->getClientOriginalName();  
         }
 
+        $produk->deskripsi=$request->deskripsi;
+
         $produk->save();
-                                                                          
-        return redirect('admin')->with('success', 'Produk Berhasil Ditambah!');
+                                                                            
+        return redirect('produk')->with('success', 'Produk Berhasil Ditambah!');
+        
     }
 
 
@@ -79,8 +96,8 @@ class ProdukController extends Controller
     public function show($id)
     {
         $produk = Produk::find($id);
-        return view('admin.produk.Show')->with('produk', $produk);
-        // echo 'ok';
+        $kategori_produk = KategoriProduk::all();
+        return view('admin.produk.Show', compact('produk', 'kategori_produk'));
     }
 
     /**
@@ -92,8 +109,9 @@ class ProdukController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $produk = Produk::find($id);
-        return view('admin.produk.Edit')->with('produk', $produk);
+        $kategori_produk = KategoriProduk::all();
+        $produk = Produk::with('kategori_produk')->find($id);
+        return view('admin.produk.Edit', compact('produk', 'kategori_produk'));
     }
 
     /**
@@ -108,6 +126,7 @@ class ProdukController extends Controller
         $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required',
+            'kategori_produk_id'  => 'required',
             'deskripsi' => 'required'
         ]);
 
@@ -120,6 +139,14 @@ class ProdukController extends Controller
             $status='Nonaktif';
         }
 
+        $show='';
+        if($request->show)
+        {
+            $show='Aktif'; 
+        }else{
+            $show='Nonaktif';
+        }
+
         $produk = Produk::find($id);
 
         $produk->status = $status;
@@ -127,15 +154,20 @@ class ProdukController extends Controller
         $produk->nama_produk=$request->nama_produk;
         $produk->harga=$request->harga;
         $produk->status=$status;
+        $produk->show=$show;
+        $produk->kategori_produk_id=$request->kategori_produk_id;
+
         if ($request->file('foto')) {
             File::delete('post-images/'. $produk->foto);
             $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
             $produk->foto = $request->file('foto')->getClientOriginalName();  
         }
+
         $produk->deskripsi=$request->deskripsi;
+        
         $produk->update();
 
-        return redirect('admin')->with('success', 'Produk berhasil diupdate!');
+        return redirect('produk')->with('success', 'Produk berhasil diupdate!');
     }
 
     /**
@@ -144,10 +176,9 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($produk)
     {
-        Produk::destroy($id);
-        // return redirect('admin')->with('success', 'Product Deleted!');
-        return response()->json(['status' => 'produk Berhasil di hapus!']);
+        Produk::destroy($produk);
+        return response()->json(['status' => 'Produk Berhasil di hapus!']);
     }
 }

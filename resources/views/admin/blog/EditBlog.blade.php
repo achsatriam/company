@@ -4,22 +4,9 @@
   <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 @endpush
 
+@section('blog-active', 'active open')
+
 @section('content')
-<ul class="menu-inner py-1">
-    <li class="menu-item">
-        <a href="/admin" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-copy"></i>
-          <div data-i18n="Product">Produk</div>
-        </a>
-      </li>
-      <li class="menu-item active open">
-        <a href="/blog" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
-          <div data-i18n="Blog">Blog</div>
-        </a>
-      </li>
-  </ul>
-</aside>
 <!-- / Menu -->
 
 <div class="layout-page">
@@ -39,9 +26,8 @@
           <div class="card-header d-flex align-items-center justify-content-between">
           </div>
           <div class="card-body">
-            <form action="{{ route('blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('blog/update',  $blog->id )  }}" method="post" enctype="multipart/form-data">
               {!! csrf_field() !!}
-              @method('PATCH')
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-name">Nama blog</label>
                 <div class="col-sm-10">
@@ -50,6 +36,37 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                 </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-company">Show Home</label>
+                <div class="col-sm-10">
+                  @if (($blog->show)=='Nonaktif')
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input @error('show') is-invalid @enderror" name="show" value="{{ old ('show', $blog->show) }}" type="checkbox" id="switchOne"   />
+                    <label class="form-check-label" for="flexSwitchCheck  "
+                      ></label
+                    >
+                  @else
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input @error('show') is-invalid @enderror" name="show" value="{{ old ('show', $blog->show) }}" type="checkbox" id="switchOne" checked/>
+                    <label class="form-check-label" for="flexSwitchCheck  "
+                      ></label
+                    >
+                  @endif
+                  </div>
+                </div>
+              <div class="col mb-3" style="display: flex">
+                <label class="col-sm-2 col-form-label" for="basic-default-name">Jenis Kategori</label>
+                <div class="col-sm-10">
+                  <select name="kategori_blog_id" class="form-select" value="{{ old('kategori_blog_id') }}" id="kategori_blog_id" aria-label="Default select example">
+                    <option value="{{ $blog->kategori_blog }}">{{ $blog->kategori_blog->kategori_blog }}</option>
+    
+                    @foreach ($kategori_blog as $item)
+                      <option value="{{ $item->id }}">{{ $item->kategori_blog }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-company">Foto</label>

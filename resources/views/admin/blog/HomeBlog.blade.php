@@ -1,39 +1,8 @@
 @extends('admin.layout.AppAdmin')
 
+@section('blog-active', 'active open')
+
 @section('content')
-  <ul class="menu-inner py-1">
-    <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">Produk</span>
-    </li>
-    <li class="menu-item">
-      <a href="/admin" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-copy"></i>
-        <div data-i18n="Produk">Produk</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/admin" class="menu-link">
-            <div data-i18n="Without menu">Katalog Produk</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/katalog" class="menu-link">
-            <div data-i18n="Without navbar">Kategori Produk</div>
-          </a>
-        </li>
-      </ul>
-      <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Blog</span>
-      </li>
-      <li class="menu-item active open">
-        <a href="/blog" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
-          <div data-i18n="Blog">Blog</div>
-        </a>
-      </li>
-    </li>
-  </ul>
-</aside>
   <!-- / Menu -->
 
   <div class="layout-page">
@@ -53,7 +22,10 @@
           <table class="table table-bordered">
             <thead>
               <tr>
+                <th>Foto</th>
                 <th>Nama Blog</th>
+                <th>Show Home</th>
+                <th>Jenis Kategori</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -62,16 +34,27 @@
                   <tr>
                     <input type="hidden" class="delete_id" value="{{ $item->id }}">
                     <td>
+                      <img class="zoom" src="{{ asset('post-images/'. $item->foto) }}" width="100px" alt="">
+                    </td>
+                    <td>
                       <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $item->nama_blog }}</strong>
                     </td>
+                    <td>
+                      @if (($item->show)=='Aktif')
+                        <span class="badge bg-label-success me-1">{{ $item->show }}</span>
+                      @else
+                        <span class="badge bg-label-danger me-1">{{ $item->show }}</span>
+                      @endif
+                    </td>
+                    <td>{{ $item->kategori_blog->kategori_blog }}</td>
                     <td style="display: flex; gap: 10px;">
-                      <a href="{{ url('/kategori/' . $item->id)}}">
+                      <a href="{{ url('/blog/' . $item->id)}}">
                         <button type="button" class="btn btn-outline-info">Show</button>
                       </a>
-                      <a href="{{ url('/kategori/' . $item->id) . '/edit' }}">
+                      <a href="{{ url('blog/edit',  $item->id )  }}">
                         <button type="button" class="btn btn-outline-primary">Edit</button>
                       </a>
-                      <form method="POST" action="{{ url('kategori' .  '/' . $item->id) }}">
+                      <form action="{{ url('blog' .  '/' . $item->id) }}">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
@@ -86,3 +69,51 @@
     </div>
   </div>
 @endsection
+<script src="{{ asset('assets\js\jquery-3.6.1.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $(document).ready(function () {
+
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+      $('.btndelete').click(function (e) {
+          e.preventDefault();
+
+          var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+          swal({
+                  title: "Apakah anda yakin?",
+                  text: "Setelah dihapus, Anda tidak dapat memulihkan data ini lagi!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+              })
+              .then((willDelete) => {
+                  if (willDelete) {
+
+                      var data = {
+                          "_token": $('input[name=_token]').val(),
+                          'id': deleteid,
+                      };
+                      $.ajax({
+                          type: "DELETE",
+                          url: 'blog/' + deleteid,
+                          data: data,
+                          success: function (response) {
+                              swal(response.status, {
+                                      icon: "success",
+                                  })
+                                  .then((result) => {
+                                      location.reload();
+                                  });
+                          }
+                      });
+                  }
+              });
+      });
+  });
+  </script>

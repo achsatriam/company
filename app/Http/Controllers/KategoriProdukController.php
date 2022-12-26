@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Models\KategoriProduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
 
-class KategoriController extends Controller
+class KategoriProdukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,11 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
-        return view ('admin.kategori.Homekategori',compact('kategori'));
+        $kategori_produk = KategoriProduk::all();
+        return view ('admin.kategoriproduk.HomeKategoriProduk',compact('kategori_produk'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +28,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('admin.kategori.AddKategori');
+        return view('admin.kategoriproduk.AddKategoriProduk');
     }
 
     /**
@@ -37,21 +40,20 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_kategori' => 'required',
-            'foto' => 'required',
+            'kategori_produk' => 'required',
         ]);
 
-        $kategori= new kategori();
-        $kategori->jenis_kategori=$request->jenis_kategori;
+        $kategori_produk= new KategoriProduk();
+        $kategori_produk->kategori_produk=$request->kategori_produk;
 
         if ($request->file('foto')) {
             $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $kategori->foto = $request->file('foto')->getClientOriginalName();  
+            $kategori_produk->foto = $request->file('foto')->getClientOriginalName();  
         }
 
-        $kategori->save();
+        $kategori_produk->save();
 
-        return redirect('kategori')->with('success', 'Kategori Berhasil Ditambah!');
+        return redirect('kategori_produk')->with('success', 'Kategori produk Berhasil Ditambah!');
     }
 
     /**
@@ -62,8 +64,8 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        $kategori = Kategori::find($id);
-        return view('admin.kategori.ShowKategori')->with('kategori', $kategori);
+        $kategori_produk = KategoriProduk::find($id);
+        return view('admin.kategoriproduk.ShowKategoriProduk')->with('kategori_produk', $kategori_produk);
     }
 
     /**
@@ -74,8 +76,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
-        return view('admin.kategori.Editkategori')->with('kategori', $kategori);
+        $kategori_produk = KategoriProduk::find($id);
+        return view('admin.kategoriproduk.EditkategoriProduk')->with('kategori_produk', $kategori_produk);
     }
 
     /**
@@ -86,21 +88,22 @@ class KategoriController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $request->validate([
-            'jenis_kategori' => 'required',
-            'deskripsi' => 'required'
+            'kategori_produk' => 'required',
         ]);
 
-        $kategori = Kategori::find($id);
-        $kategori->jenis_kategori=$request->jenis_kategori;
+        $kategori_produk = KategoriProduk::find($id);
+        $kategori_produk->kategori_produk=$request->kategori_produk;
+
         if ($request->file('foto')) {
+            File::delete('post-images/'. $kategori_produk->foto);
             $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $input['foto'] = $request->file('foto')->getClientOriginalName();  
+            $kategori_produk->foto = $request->file('foto')->getClientOriginalName();  
         }
-        $kategori->deskripsi=$request->deskripsi;
-        $kategori->update();
-        return redirect('kategori')->with('success', 'kategori berhasil diupdate!');
+
+        $kategori_produk->update();
+        return redirect('kategori_produk')->with('success', 'Kategori_produk berhasil diupdate!');
     }
 
     /**
@@ -111,7 +114,7 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        Kategori::destroy($id);
-        return redirect('kategori')->with('success', 'kategori Deleted!');
+        KategoriProduk::destroy($id);
+        return response()->json(['status' => 'Kategori_produk Berhasil di hapus!']);
     }
 }

@@ -27,11 +27,37 @@
 </head>
 
 <body>
+  <!-- Header -->
+  <div id="wabox">
+    <i class="fas fa-times y"></i>
+    <div class="wahead">
+        <div class="waimg"></div>
+        <div class="ol"></div>
+        <div class="wans">
+            <div class="waname">Yunus</div>
+        <div class="wasub">Chat with us on WhatsApp</div>
+        </div>
+    </div>
+    <div class="wabody">
+        <div class="watxt">
+          Haloo 👋<br>Saya sbg Admin Creaprint<br>Ada yang bisa saya bantu?
+        </div>
+        <div class="pnh"> </div>
+    </div>
+    <div class="wafooter">
+        <textarea row="2" id="wapesan" placeholder="Ketikkan pesan disini..."></textarea>
+        <i id="wasend" class="fas fa-paper-plane"></i>
+    </div>
+  </div>
+
+  <a class="float">
+    <i class="fab fa-whatsapp my-float"></i>
+  </a>
 
   <!-- Aside (Mobile Navigation) -->
   <aside class="sigma_aside sigma_aside-left">
 
-    <a class="navbar-brand" href="index-2.html"> <img src="{{ asset('assets/img/logo-dark.png')}}" alt="logo"> </a>
+    <a class="navbar-brand" href="/"> <img src="{{ asset('assets/img/logo-dark.png')}}" alt="logo"> </a>
 
     <!-- Menu -->
     <ul>
@@ -52,6 +78,20 @@
           <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
         </ul>
       </li>
+      <li class="menu-item menu-item-has-children">
+        <a href="#">How to order</a>
+        <ul class="sub-menu">
+          <li class="menu-item"> <a href="/list_product">List Product</a> </li>
+          <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
+        </ul>
+      </li>
+      <li class="menu-item menu-item-has-children">
+        <a href="#">About us</a>
+        <ul class="sub-menu">
+          <li class="menu-item"> <a href="/list_product">List Product</a> </li>
+          <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
+        </ul>
+      </li>
       <li class="menu-item">
         <a href="/contact_us">Contact Us</a>
       </li>
@@ -60,106 +100,206 @@
   </aside>
   <div class="sigma_aside-overlay aside-trigger-left"></div>
 
-  <!-- Header Start -->
-  <header class="sigma_header header-1 can-sticky header-absolute header-light">
+  @if (\Route::current()->getName() == 'contact')
+    <!-- Header Start -->
+    <header class="sigma_header header-1 can-sticky">
 
-    <!-- Middle Header Start -->
-    <div class="sigma_header-middle">
-      <div class="container">
-        <nav class="navbar">
+      <!-- Middle Header Start -->
+      <div class="sigma_header-middle">
+          <div class="container">
+              <nav class="navbar">
 
-          <!-- Logo Start -->
-          <div class="sigma_logo-wrapper">
-            <a class="navbar-brand" href="index-2.html">
-              <img src="{{ asset('assets/img/logo.png')}}" alt="logo">
-            </a>
-          </div>
-          <!-- Logo End -->
-
-          <!-- Menu -->
-          <ul class="navbar-nav">
-            <li class="menu-item">
-              <a href="/">Home Page</a>
-            </li>
-            <li class="menu-item">
-              <a href="/list_blog">Blog</a>
-            </li>
-            <li class="menu-item">
-              <a href="/list_product">Shop</a>
-            </li>
-            <li class="menu-item">
-              <a href="/contact_us">Contact Us</a>
-            </li>
-          </ul>
-
-          <!-- Controls -->
-          <a href="contact-us.html" class="sigma_btn-custom btn-sm light btn-pill d-none d-lg-block">Get a Quote</a>
-
-          <!-- Mobile Toggler -->
-          <div class="aside-toggler style-2 aside-trigger-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </nav>
-      </div>
-    </div>
-    <!-- Middle Header End -->
-
-  </header>
-  <!-- Header End -->
-
-  <!-- Subheader Start -->
-  <div class="sigma_subheader subheader-lg dark-overlay primary-overlay bg-cover bg-norepeat" style="background-image: url({{ asset('assets/img/banner/4.jpg')}}">
-
-    <img src="{{ asset('assets/img/textures/3.png') }}" class="texture-3" alt="texture">
-
-    <!-- Top Left Wave -->
-    <div class="sigma_subheader-shape circles">
-      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
-      <div class="circle circle-sm circle-2 bg-white"></div>
-      <div class="circle circle-md circle-3 secondary-bg"></div>
-    </div>
-
-    <!-- Bottom Wave -->
-    <div class="sigma_subheader-shape waves">
-      <div class="wave"></div>
-      <div class="wave"></div>
-    </div>
-
-    <div class="sigma_subheader-inner">
-
-      <div class="sigma_subheader-slider">
-
-        <!-- Banner Item Start -->
-        <div class="sigma_banner-slider-inner">
-          <div class="sigma_banner-text">
-            <div class="container">
-              <div class="row align-items-center justify-content-center">
-                <div class="col-lg-8 text-center">
-                  <div class="mb-0 section-title">
-                    <h6 class="subtitle">About Us</h6>
-                    <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
-                    <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                  <!-- Logo Start -->
+                  <div class="sigma_logo-wrapper">
+                      <a class="navbar-brand" href="/">
+                          <img src="assets/img/logo-dark.png" alt="logo">
+                      </a>
                   </div>
-                </div>
-              </div>
+                  <!-- Logo End -->
+
+                  <!-- Menu -->
+                  <ul class="navbar-nav">
+                      <li class="menu-item">
+                        <a href="/">Home Page</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="/list_blog">Blog</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="/list_product">Produk</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="/how_to_order">How to order</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="/about_us">About us</a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="/contact_us">Contact Us</a>
+                      </li>
+                  </ul>
+          
+                  <!-- Controls -->
+                  <a href="contact-us.html" class="sigma_btn-custom btn-sm dark btn-pill d-none d-lg-block">Get a Quote</a>
+
+                  <!-- Mobile Toggler -->
+                  <div class="aside-toggler style-2 aside-trigger-left">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </div>
+
+              </nav>
+          </div>
+      </div>
+      <!-- Middle Header End -->
+    </header>
+    <!-- Header End -->   
+  @else
+    <!-- Header Start -->
+    <header class="sigma_header header-1 can-sticky header-absolute header-light">
+
+      <!-- Middle Header Start -->
+      <div class="sigma_header-middle">
+        <div class="container">
+          <nav class="navbar">
+
+            <!-- Logo Start -->
+            <div class="sigma_logo-wrapper">
+              <a class="navbar-brand" href="/">
+                <img src="{{ asset('assets/img/logo.png')}}" alt="logo">
+              </a>
             </div>
+            <!-- Logo End -->
+
+            <!-- Menu -->
+            <ul class="navbar-nav">
+              <li class="menu-item">
+                <a href="/">Home Page</a>
+              </li>
+              <li class="menu-item">
+                <a href="/list_blog">Blog</a>
+              </li>
+              <li class="menu-item">
+                <a href="/list_product">Produk</a>
+              </li>
+              <li class="menu-item">
+                <a href="/how_to_order">How to order</a>
+              </li>
+              <li class="menu-item">
+                <a href="/about_us">About us</a>
+              </li>
+              <li class="menu-item">
+                <a href="/contact_us">Contact Us</a>
+              </li>
+            </ul>
+
+            <!-- Controls -->
+            <a href="contact-us.html" class="sigma_btn-custom btn-sm light btn-pill d-none d-lg-block">Get a Quote</a>
+
+            <!-- Mobile Toggler -->
+            <div class="aside-toggler style-2 aside-trigger-left">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+          </nav>
+        </div>
+      </div>
+      <!-- Middle Header End -->
+
+    </header>
+    <!-- Header End -->
+  @endif
+  
+  @yield('content')
+
+  <!-- Clients Start -->
+  <div class="section pt-0">
+    <div class="container">
+      <div class="row no-gutters">
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+              <img src="{{asset('assets/img/clients/1.png')}}" alt="client">
           </div>
         </div>
-        <!-- Banner Item End -->
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/2.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/3.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/4.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/5.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/6.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/7.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/8.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/9.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/1.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/11.png')}}" alt="client">
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-6 p-0">
+          <div class="sigma_client">
+            <img src="{{asset('assets/img/clients/12.png')}}" alt="client">
+          </div>
+        </div>
 
       </div>
-
     </div>
-
   </div>
-  <!-- Subheader End -->
-
-  @yield('content')
+  <!-- Clients End -->
 
   <!-- Footer Start -->
   <footer class="sigma_footer sigma_footer-dark primary-bg">
@@ -254,6 +394,35 @@
 
   <!-- Tilakam Scripts -->
   <script src="{{ asset('assets/js/main.js')}}"></script>
+  <script src="{{ asset('assets\js\jquery-3.6.1.min.js') }}"></script>
+
+  <script>
+
+    $watampil='hide';
+    $('.float').click(function(){
+        if($watampil=='hide'){
+            document.getElementById("wabox").style.display = "inline-block";
+            $watampil='show';
+        }else{
+             document.getElementById("wabox").style.display = "none";
+            $watampil='hide';
+        }
+    });
+    
+    $('.y').click(function(){
+        document.getElementById("wabox").style.display = "none";
+        $watampil='hide';
+    });
+    
+    
+    $('#wasend').click(function(){
+        $url = 'https://api.whatsapp.com/send?phone=62089678833232&text='+encodeURIComponent($('#wapesan').val());
+        window.open($url, '_blank');
+        $('#wapesan').val('')
+        $('.wabox').hide();
+    });
+
+</script>
 
 </body>
 

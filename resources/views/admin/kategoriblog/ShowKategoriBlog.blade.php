@@ -1,6 +1,6 @@
 @extends('admin.layout.AppAdmin')
 
-@section('blog-active', 'active open')
+@section('category_blog-active', 'active open')
 
 @section('content')
 <!-- / Menu -->
@@ -25,42 +25,18 @@
           <div class="card-body">
             <form action="" method="" enctype="multipart/form-data">
               <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Foto  :</label>
+                <label class="col-sm-2 col-form-label" for="basic-default-company">Foto Kategori  :</label>
                 <div class="col-sm-10">
                  <div class="form-check form-switch mb-2">
-                   <p><img class="zoom" src="{{ asset('post-images/'. $blog->foto) }}" width="500px" alt=""></p>
+                   <p><img class="zoom" src="{{ asset('post-images/'. $kategori_blog->foto) }}" width="500px" alt=""></p>
                  </div>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Nama Blog :</label>
-                <div class="col-sm-10">
-                  <div class="form-check form-switch mb-2">
-                    <p>{{ $blog->nama_blog }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Show :</label>
-                <div class="col-sm-10">
-                  <div class="form-check form-switch mb-2">
-                    <p>{{ $blog->show }}</p>
-                  </div>
                 </div>
               </div>
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-company">Jenis Kategori :</label>
                 <div class="col-sm-10">
                   <div class="form-check form-switch mb-2">
-                    <p>{{ $blog->kategori_blog->kategori_blog }}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi :</label>
-                <div class="col-sm-10">
-                  <div class="form-check form-switch mb-2">
-                    <p>{!! $blog->deskripsi !!}</p>
+                    <p>{{ $kategori_blog->kategori_blog }}</p>
                   </div>
                 </div>
               </div>

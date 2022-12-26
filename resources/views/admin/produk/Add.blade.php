@@ -4,40 +4,9 @@
   <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 @endpush
 
+@section('catalog-active', 'active open')
+
 @section('content')
-<ul class="menu-inner py-1">
-  <li class="menu-header small text-uppercase">
-    <span class="menu-header-text">Produk</span>
-  </li>
-  <li class="menu-item active open">
-    <a href="/admin" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-copy"></i>
-      <div data-i18n="Produk">Produk</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item active">
-        <a href="/admin" class="menu-link">
-          <div data-i18n="Without menu">Katalog Produk</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="/kategori" class="menu-link">
-          <div data-i18n="Without navbar">Kategori Produk</div>
-        </a>
-      </li>
-    </ul>
-    <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">Blog</span>
-    </li>
-    <li class="menu-item">
-      <a href="/blog" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-detail"></i>
-        <div data-i18n="Blog">Blog</div>
-      </a>
-    </li>
-  </li>
-</ul>
-</aside>
 <div class="layout-page">
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
     <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -46,7 +15,7 @@
     <!-- Content -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data/ Product/ </span> Add</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data/ Produk/ </span> Add</h4>
 
     <!-- Basic Layout & Basic with Icons -->
     <div class="row">
@@ -56,7 +25,7 @@
           <div class="card-header d-flex align-items-center justify-content-between">
           </div>
           <div class="card-body">
-            <form action="{{ url('admin') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('produk') }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Produk</label>
@@ -93,6 +62,27 @@
                 </div>
               </div>
               <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-company">Show Home</label>
+                <div class="col-sm-10">
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" name="show" type="checkbox" id="switchOne" checked/>
+                    <label class="form-check-label" for="flexSwitchCheckChecked"
+                      ></label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-3" style="display: flex">
+                <label class="col-sm-2 col-form-label" for="basic-default-name">Jenis Kategori</label>
+                <div class="col-sm-10">
+                    <select name="kategori_produk_id" class="form-select" value="{{ old('kategori_produk_id') }}" id="kategori_produk_id" aria-label="Default select example">
+                      @foreach ($kategori_produk as $item)
+                        <option value="{{ $item->id }}">{{ $item->kategori_produk }}</option>
+                      @endforeach
+                    </select>
+                </div>
+              </div>
+              <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-company">Foto</label>
                 <div class="col-sm-10">
                   <input class="form-control dropify @error('foto') is-invalid @enderror" value="{{ old('foto') }}" name="foto" type="file" id="foto" onchange="previewImage()" />
@@ -120,22 +110,6 @@
           </div>
         </div>
       </div>
-      {{-- <script>
-        function previewImage() {
-          const foto = document.querySelector('#foto');
-          const imgPreview = document.querySelector('.img-preview');
-
-          imgPreview.style.display = 'block';
-
-          const oFReader = new FileReader();
-          oFReader.readAsDataUrL(foto.files[0]);
-
-          oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-          }
-        }
-      </script> --}}
-  <!-- / Content -->
 @endsection
 @push('admin_script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>

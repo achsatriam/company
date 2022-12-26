@@ -77,7 +77,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="/admin" class="app-brand-link">
+            <a href="/produk" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -143,6 +143,39 @@
 
           <div class="menu-inner-shadow"></div>
           <!-- Dashboard -->
+          <ul class="menu-inner py-1">
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Produk</span>
+            </li>
+            <li class="menu-item @yield('catalog-active')">
+              <a href="/produk" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Produk">Katalog Produk</div>
+              </a>
+            </li>
+            <li class="menu-item @yield('category-active')" >
+              <a href="/kategori_produk" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Produk">Kategori Produk</div>
+              </a>
+            </li>
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Blog</span>
+            </li>
+            <li class="menu-item @yield('blog-active')">
+              <a href="/blog" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Blog">Blog</div>
+              </a>
+            </li>
+            <li class="menu-item @yield('category_blog-active')" >
+              <a href="/kategori_blog" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Produk">Kategori Blog</div>
+              </a>
+            </li>
+          </ul>
+          </aside>
 
           @yield('content')
 
@@ -166,8 +199,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
@@ -176,83 +207,12 @@
     {{-- jquery --}}
     <script src="{{ asset('assets\js\jquery-3.6.1.min.js') }}"></script>
 
-    <script>
-    $(document).ready(function () {
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('.btndelete').click(function (e) {
-            e.preventDefault();
-
-            var deleteid = $(this).closest("tr").find('.delete_id').val();
-
-            swal({
-                    title: "Apakah anda yakin?",
-                    text: "Setelah dihapus, Anda tidak dapat memulihkan data ini lagi!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-
-                        var data = {
-                            "_token": $('input[name=_token]').val(),
-                            'id': deleteid,
-                        };
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'admin/' + deleteid,
-                            data: data,
-                            success: function (response) {
-                                swal(response.status, {
-                                        icon: "success",
-                                    })
-                                    .then((result) => {
-                                        location.reload();
-                                    });
-                            }
-                        });
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'blog/' + deleteid,
-                            data: data,
-                            success: function (response) {
-                                swal(response.status, {
-                                        icon: "success",
-                                    })
-                                    .then((result) => {
-                                        location.reload();
-                                    });
-                            }
-                        });
-                    }
-                });
-        });
-    });
-    </script>
     <script>
       @if (Session::has('success'))
         toastr.success('{{ Session::get('success') }}');
       @endif
     </script>
-    {{-- <script>
-      $('.dropify').dropify();
-
-      $(function () {
-          $(document).on("click", "#foto", function (event) {
-              let myForm = document.getElementById('saveForm');
-              let formData = new FormData(myForm);
-              uploadImage(formData);
-              console.log(formData);
-
-          });
-      });
-    </script> --}}
     @stack('admin_script')
   </body>
 </html>

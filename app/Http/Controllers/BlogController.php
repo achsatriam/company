@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\KategoriBlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -14,7 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::all();
+        $blog = Blog::with('kategori_blog')->paginate();
         return view ('admin.blog.HomeBlog',compact('blog'));
     }
 
@@ -25,7 +27,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.Add');
+        $kategori_blog = KategoriBlog::all();
+        return view('admin.blog.AddBlog', compact('kategori_blog'));
     }
 
     /**
@@ -39,12 +42,24 @@ class BlogController extends Controller
         $request->validate([
             'nama_blog' => 'required',
             'foto' => 'required',
+            'kategori_blog_id' => 'required',
             'deskripsi' => 'required'
         ]);
-
+        
         $blog= new Blog();
         $blog->nama_blog=$request->nama_blog;
-        $blog->harga=$request->harga;
+
+        $show='';
+        if($request->show)
+        {
+            $show='Aktif';
+        }else{
+            $show='Nonaktif';
+        }
+
+        $blog->show=$show;
+
+        $blog->kategori_blog_id=$request->kategori_blog_id;
 
         if ($request->file('foto')) {
             $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
@@ -52,6 +67,8 @@ class BlogController extends Controller
         }
 
         $blog->deskripsi=$request->deskripsi;
+
+        $blog->save();
                            
         return redirect('blog')->with('success', 'Blog Berhasil Ditambah!');
     }
@@ -65,7 +82,8 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::find($id);
-        return view('admin.blog.ShowBlog')->with('blog', $blog);
+        $kategori_blog = KategoriBlog::all();
+        return view('admin.blog.ShowBlog', compact('blog', 'kategori_blog'));
     }
 
     /**
@@ -76,8 +94,9 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $blog = Blog::find($id);
-        return view('admin.blog.EditBlog')->with('blog', $blog);
+        $kategori_blog = KategoriBlog::all();
+        $blog = Blog::with('kategori_blog')->find($id);
+        return view('admin.blog.EditBlog', compact('blog', 'kategori_blog'));
     }
 
     /**
@@ -91,17 +110,35 @@ class BlogController extends Controller
     {
         $request->validate([
             'nama_blog' => 'required',
+            'kategori_blog_id'  => 'required',
             'deskripsi' => 'required'
         ]);
 
         $blog = Blog::find($id);
         $blog->nama_blog=$request->nama_blog;
-        if ($request->file('foto')) {
-            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $input['foto'] = $request->file('foto')->getClientOriginalName();  
+
+        $show='';
+        if($request->show)
+        {
+            $show='Aktif';
+        }else{
+            $show='Nonaktif';
         }
+
+        $blog->show=$show;
+
+        $blog->kategori_blog_id=$request->kategori_blog_id;
+
+        if ($request->file('foto')) {
+            File::delete('post-images/'. $blog->foto);
+            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
+            $blog->foto = $request->file('foto')->getClientOriginalName();  
+        }
+
         $blog->deskripsi=$request->deskripsi;
+
         $blog->update();
+        
         return redirect('blog')->with('success', 'Blog berhasil diupdate!');
     }
 
@@ -114,6 +151,6 @@ class BlogController extends Controller
     public function destroy($id)
     {
         Blog::destroy($id);
-        return redirect('blog')->with('success', 'Blog Deleted!');
+        return response()->json(['status' => 'Blog Berhasil di hapus!']);
     }
 }

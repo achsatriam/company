@@ -10,5 +10,10 @@ class Blog extends Model
     use HasFactory;
     protected $table = 'blogs';
     protected $primaryKey = 'id';
-    protected $fillable = ['nama_blog', 'foto', 'deskripsi'];
+    protected $fillable = ['nama_blog', 'show', 'foto', 'deskripsi'];
+
+    public function kategori_blog()
+    {
+        return $this->belongsTo(KategoriBlog::class);
+    }
 }

@@ -1,6 +1,40 @@
 @extends('klien.layout.App')
 
 @section('content')
+
+
+  <!-- Subheader Start -->
+  <div class="sigma_subheader primary-bg">
+
+    <img src="assets/img/textures/3.png" class="texture-3" alt="texture">
+
+    <!-- Top Left Wave -->
+    <div class="sigma_subheader-shape circles">
+      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
+      <div class="circle circle-sm circle-2 bg-white"></div>
+      <div class="circle circle-md circle-3 secondary-bg"></div>
+    </div>
+
+    <!-- Bottom Wave -->
+    <div class="sigma_subheader-shape waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+
+    <div class="container">
+      <div class="sigma_subheader-inner">
+        <h1>Blog</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- Subheader End -->
+
   <div class="section">
     <div class="container">
       <div class="row">
@@ -22,10 +56,11 @@
             <!-- Search Widget Start -->
             <div class="sidebar-widget widget-search">
               <h5 class="widget-title">Search</h5>
-              <form method="post">
+              <form method="get" action="{{ route('list_blog') }}">
                 <div class="sigma_search-adv-input">
-                  <input type="text" class="form-control" placeholder="Search Posts" name="search" value="">
-                  <button type="submit" name="button"><i class="fa fa-search"></i></button>
+                  <input type="text" value="{{ request()->input('search', old('search')) }}" class="form-control" placeholder="search" name="search">
+                  <input type="text" class="form-control" name="category" hidden value="{{request()->category}}">
+                  <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
               </form>
             </div>
@@ -35,14 +70,9 @@
             <div class="sidebar-widget">
               <h5 class="widget-title"> Our Categories </h5>
               <ul class="sidebar-widget-list">
-                <li> <a href="#"> Slate & Crystal Events </a> </li>
-                <li> <a href="#"> Indigo Event Planning </a> </li>
-                <li> <a href="#"> Buttercup Events </a> </li>
-                <li> <a href="#"> Done Right Event Designs </a> </li>
-                <li> <a href="#"> Polished Events </a> </li>
-                <li> <a href="#"> Posh Peony Events </a> </li>
-                <li> <a href="#"> Dark Roast Events </a> </li>
-                <li> <a href="#"> Origami Crane Wedding Planners </a> </li>
+                @foreach ($kategoris as $item)
+                  <li> <a style="{{(request()->category == $item->id)?'color: #61be66;':''}}" href="{{ route('list_blog', ["category"=>$item->id, "search"=>request()->search]) }}"> {{ $item->kategori_blog }} </a> </li>
+                @endforeach
               </ul>
 
             </div>
@@ -65,13 +95,13 @@
             </div>
             <!-- Popular Tags End -->
 
-            <!-- Ad banner Start -->
+            {{-- <!-- Ad banner Start -->
             <div class="sidebar-widget widget-ad p-0 border-0">
               <a href="#">
                 <img src="assets/img/blog/details/5.jpg" alt="ad">
               </a>
             </div>
-            <!-- Ad banner End -->
+            <!-- Ad banner End --> --}}
 
           </div>
         </div>
@@ -81,19 +111,19 @@
           @foreach($blogs as $item)
             <article class="sigma_post">
               <div class="sigma_post-thumb">
-                <a href="{{ route('blog.detail',$item) }}">
-                  <img src="{{ asset('post-images/'. $item->foto) }}" alt="post">
+                <a href="{{ url('/details_blog',$item) }}">
+                  <img src="{{ asset('post-images/'. $item->foto) }}" style="width:750px; height:400px" alt="post">
                 </a>
               </div>
               <div class="sigma_post-body">
                 <div class="sigma_post-meta">
                   {{-- <div class="sigma_post-categories">
-                    <a href="{{ route('blog.detail',$item) }}" class="sigma_post-category">{{ $item->nama_blog }}</a>
+                    <a href="{{ url('blog.detail',$item) }}" class="sigma_post-category">{{ $item->nama_blog }}</a>
                   </div> --}}
-                  <a href="{{ route('blog.detail',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
+                  <a href="{{ url('blog.detail',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
                 </div>
-                <h5> <a href="{{ route('blog.detail',$item) }}">{{ $item->nama_blog }}</a> </h5>
-                <p>{!! $item->deskripsi !!}</p>
+                <h5> <a href="{{ url('blog.detail',$item) }}">{{ $item->nama_blog }}</a> </h5>
+                <p>{!! $deskripsi = substr($item->deskripsi, 0, 400) !!} <a href="{{ url('blog.detail',$item) }}">...Read more</a></p>
               </div>
             </article>
           @endforeach
@@ -174,7 +204,7 @@
     </div>
   </div>
 
-  <!-- Contact form Start -->
+  {{-- <!-- Contact form Start -->
   <div class="row">
 
     <div class="col-lg-2 d-none d-lg-block">
@@ -243,5 +273,5 @@
     </div>
 
   </div>
-  <!-- Contact form End -->
+  <!-- Contact form End --> --}}
 @endsection

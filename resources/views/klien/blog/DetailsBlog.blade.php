@@ -1,20 +1,50 @@
 @extends('klien.layout.App')
 
 @section('content')
-  <!-- Post Content Start -->
+  <!-- Subheader Start -->
+  <div class="sigma_subheader primary-bg">
+
+    <img src="assets/img/textures/3.png" class="texture-3" alt="texture">
+
+    <!-- Top Left Wave -->
+    <div class="sigma_subheader-shape circles">
+      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
+      <div class="circle circle-sm circle-2 bg-white"></div>
+      <div class="circle circle-md circle-3 secondary-bg"></div>
+    </div>
+
+    <!-- Bottom Wave -->
+    <div class="sigma_subheader-shape waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+
+    <div class="container">
+      <div class="sigma_subheader-inner">
+        <h1>Blog Details</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Blog</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- Subheader End -->
+
   <div class="section sigma_post-single">
     <div class="container">
-
       <div class="row">
 
-        <!-- Sidebar Start -->
         <div class="col-lg-4">
           <div class="sidebar">
 
             <!-- About Author Start -->
             <div class="sidebar-widget widget-about-author">
               <div class="widget-about-author-inner">
-                <img src="assets/img/people/4.jpg" alt="author">
+                <img src="{{asset('assets/img/people/4.jpg')}}" alt="author">
                 <h5>About Me</h5>
                 <p>"Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit"</p>
                 <a href="#">Johny Bora</a>
@@ -67,14 +97,6 @@
             </div>
             <!-- Popular Tags End -->
 
-            <!-- Ad banner Start -->
-            <div class="sidebar-widget widget-ad p-0 border-0">
-              <a href="#">
-                <img src="assets/img/blog/details/5.jpg" alt="ad">
-              </a>
-            </div>
-            <!-- Ad banner End -->
-
           </div>
         </div>
         <!-- Sidebar End -->
@@ -83,7 +105,7 @@
 
           <div class="entry-content">
             <div class="sigma_post-single-thumb">
-              <img src="{{ asset('post-images/'. $blog->foto) }}" alt="post">
+              <img src="{{ asset('post-images/'. $blog->foto) }}" style="width:750px; height:400px" alt="post">
             </div>
             <h3 class="entry-title">{{ $blog->nama_blog }}</h3>
             <div class="sigma_post-meta">
@@ -182,7 +204,7 @@
             <div class="comments-list">
               <ul>
                 <li class="comment-item">
-                  <img src="assets/img/people/1.jpg" alt="comment author">
+                  <img src="{{asset('assets/img/people/1.jpg')}}" alt="comment author">
                   <div class="comment-body">
                     <h5>Robert John</h5>
                     <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
@@ -191,7 +213,7 @@
                   </div>
                 </li>
                 <li class="comment-item">
-                  <img src="assets/img/people/2.jpg" alt="comment author">
+                  <img src="{{asset('assets/img/people/2.jpg')}}" alt="comment author">
                   <div class="comment-body">
                     <h5>Christine Hill</h5>
                     <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches</p>
@@ -231,86 +253,4 @@
     </div>
   </div>
   <!-- Post Content End -->
-
-  <!-- Clients Start -->
-  <div class="section pt-0">
-    <div class="container">
-      <div class="row no-gutters">
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-              <img src="assets/img/clients/1.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/2.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/3.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/4.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/5.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/6.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/7.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/8.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/9.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/10.html" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/11.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/12.png" alt="client">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- Clients End -->
 @endsection

@@ -1,6 +1,6 @@
 @extends('admin.layout.AppAdmin')
 
-@section('catalog-active', 'active open')
+@section('category-active', 'active open')
 
 @section('content')
   <!-- / Menu -->
@@ -11,60 +11,40 @@
       </ul>
     </div>
   <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data / Produk /</span> Katalog Produk</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data / Produk / </span> Kategori</h4>
 
     <div class="card">
       <div class="card-body">
         <div class="table-responsive text-nowrap">
-          <a href="{{ url('produk/Add') }}">
+          <a href="{{ url('kategori_produk/Add') }}">
             <button type="button" class="btn btn-outline-success">Add</button>
           </a>
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Foto</th>
-                <th>Nama Product</th>
-                <th>Harga</th>
-                <th>Status</th>
-                <th>Show Home</th>
-                <th>Jenis Kategori</th>
+                <th>Kategori</th>
                 <th>Aksi</th>
               </tr>
             </thead>
               <tbody>
-                @foreach($produk as $item)
+                @foreach($kategori_produk as $item)
                   <tr>
                     <input type="hidden" class="delete_id" value="{{ $item->id }}">
                     <td>
                       <img class="zoom" src="{{ asset('post-images/'. $item->foto) }}" width="100px" alt="">
                     </td>
                     <td>
-                      <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $item->nama_produk }}</strong>
+                      <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $item->kategori_produk }}</strong>
                     </td>
-                    <td>{{ $item->harga }}</td>
-                    <td>
-                      @if (($item->status)=='Aktif')
-                        <span class="badge bg-label-success me-1">{{ $item->status }}</span>
-                      @else
-                        <span class="badge bg-label-danger me-1">{{ $item->status }}</span>
-                      @endif
-                    </td>
-                    <td>
-                      @if (($item->show)=='Aktif')
-                        <span class="badge bg-label-success me-1">{{ $item->show }}</span>
-                      @else
-                        <span class="badge bg-label-danger me-1">{{ $item->show }}</span>
-                      @endif
-                    </td>
-                    <td>{{ $item->kategori_produk->kategori_produk }}</td>
                     <td style="display: flex; gap: 10px;">
-                      <a href="{{ url('/produk/' . $item->id)}}">
+                      <a href="{{ url('/kategori_produk/' . $item->id)}}">
                         <button type="button" class="btn btn-outline-info">Show</button>
                       </a>
-                      <a href="{{ url('produk/edit',  $item->id )  }}">
+                      <a href="{{ url('kategori_produk/edit',  $item->id )  }}">
                         <button type="button" class="btn btn-outline-primary">Edit</button>
                       </a>
-                      <form action="{{ url('produk' .  '/' . $item->produk) }}">
+                      <form action="{{ url('kategori_produk' .  '/' . $item->kategori_produk) }}">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
@@ -111,7 +91,7 @@
                       };
                       $.ajax({
                           type: "DELETE",
-                          url: 'produk/' + deleteid,
+                          url: 'kategori/' + deleteid,
                           data: data,
                           success: function (response) {
                               swal(response.status, {

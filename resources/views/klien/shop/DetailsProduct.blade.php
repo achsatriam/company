@@ -1,26 +1,60 @@
 @extends('klien.layout.App')
 
 @section('content')
+
+
+  <!-- Subheader Start -->
+  <div class="sigma_subheader primary-bg">
+
+    <img src="assets/img/textures/3.png" class="texture-3" alt="texture">
+
+    <!-- Top Left Wave -->
+    <div class="sigma_subheader-shape circles">
+      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
+      <div class="circle circle-sm circle-2 bg-white"></div>
+      <div class="circle circle-md circle-3 secondary-bg"></div>
+    </div>
+
+    <!-- Bottom Wave -->
+    <div class="sigma_subheader-shape waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+
+    <div class="container">
+      <div class="sigma_subheader-inner">
+        <h1>Produk Details</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Produk</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Produk Details</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- Subheader End -->
+
   <!-- Product Content Start -->
     <div class="section">
       <div class="container">
 
         <div class="row">
           <div class="col-md-6">
-            <div class="sigma_product-single-thumb">
-              <img src="{{ asset('post-images/'. $produk->foto) }}" alt="product">
+            <div class="">
+              <img src="{{ asset('post-images/'. $produk->foto) }}" style="width:600px; height:350px" alt="product">
             </div>
 
           </div>
-          <div class="col-md-6">
+          <div style="margin-top: 10px" class="col-md-6">
 
             <div class="sigma_product-single-content">
 
               <h4 class="entry-title"> {{ $produk->nama_produk }} </h4>
 
               <div class="sigma_product-price">
-                <span>{{ $produk->harga }}</span>
-                {{-- <span>245$</span> --}}
+                <span>Rp {{ number_format($produk->harga) }}</span>
               </div>
 
               <div class="sigma_rating-wrapper">
@@ -33,89 +67,19 @@
                 </div>
                 <span>255 Reviews</span>
               </div>
-
               <p> 
-                {{-- <strong class="mr-2">Interested: <span>05</span></strong>  --}}
                 <strong>Availablity: <span>{{ $produk->status }}</span></strong> 
               </p>
 
               <form class="sigma_product-atc-form">
-
-                <div class="sigma_product-variation-wrapper">
-                  <div class="sigma_product-radio form-group">
-                    <label>
-                      <input type="radio" name="size" value="" checked>
-                      <span>XS</span>
-                    </label>
-                    <label>
-                      <input type="radio" name="size" value="">
-                      <span>S</span>
-                    </label>
-                    <label>
-                      <input type="radio" name="size" value="">
-                      <span>M</span>
-                    </label>
-                    <label>
-                      <input type="radio" name="size" value="">
-                      <span>L</span>
-                    </label>
-                    <label>
-                      <input type="radio" name="size" value="">
-                      <span>XL</span>
-                    </label>
-                  </div>
-                </div>
-
                 <div class="qty-outter">
-                  <a href="product-single.html" class="sigma_btn-custom secondary btn-pill">Buy Now</a>
-                  <div class="qty-inner">
-                    <h6>Qty:</h6>
-                    <div class="qty">
-                      <span class="qty-subtract"><i class="fa fa-minus"></i></span>
-                      <input type="text" name="qty" value="1">
-                      <span class="qty-add"><i class="fa fa-plus"></i></span>
-                    </div>
-                  </div>
+                  <ul class="sigma_sm">
+                  <li>
+                    <a href="https://api.whatsapp.com/send?phone=62089678833232&text=Halo%20admin,%20saya%20ingin%20order%20{{ $produk->nama_produk }}" class="sigma_btn-custom btn-pill" target="blank">Order Now <i class="fab fa-whatsapp"></i></a>
+                  </li>
                 </div>
 
               </form>
-
-              <!-- Post Meta Start -->
-              <div class="sigma_post-single-meta">
-                <div class="sigma_post-single-meta-item sigma_post-share">
-                  <h6>Share</h6>
-                  <ul class="sigma_sm">
-                    <li>
-                      <a href="#">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fab fa-linkedin-in"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fab fa-youtube"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="sigma_post-single-meta-item">
-                  <div class="sigma_product-controls">
-                    <a href="#" data-toggle="tooltip" title="Compare"> <i class="far fa-signal-4"></i> </a>
-                    <a href="#" data-toggle="tooltip" title="Wishlist"> <i class="far fa-heart"></i> </a>
-                  </div>
-                </div>
-              </div>
-              <!-- Post Meta End -->
-
             </div>
 
           </div>
@@ -267,22 +231,24 @@
         <div class="sigma_related-slider">
 
           <!-- Product Start -->
+          @foreach ($related_produk as $item)
             <div class="sigma_product">
               <div class="sigma_product-badge sigma_badge-featured">
                 <i class="fa fa-star"></i>
               </div>
               <div class="sigma_product-thumb">
-                <a href="product-single.html"><img src="assets/img/products/1.jpg" alt="product"></a>
+                <a href="{{ url('/details_product',$item) }}"><img src="{{ asset('post-images/'. $item->foto) }} "style="width:400px; height:250px" alt="product"></a>
               </div>
               <div class="sigma_product-body">
-                <h5 class="sigma_product-title"> <a href="product-single.html">T-shirt Design</a> </h5>
+                <h5 class="sigma_product-title"> <a href="{{ url('/details_product',$item) }}">{{ $item->nama_produk }}</a> </h5>
                 <div class="sigma_product-price">
-                  <span>29$</span>
+                  <span>Rp {{ number_format($item->harga) }}</span>
                 </div>
-                <a href="product-single.html" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
+                <a href="{{ url('/details_product',$item) }}" class="sigma_btn-custom btn-sm dark btn-pill">Details</a>
 
               </div>
             </div>
+          @endforeach
           <!-- Product End -->
 
           {{-- <!-- Product Start -->
@@ -348,86 +314,4 @@
     </div>
   </div>
   <!-- Related Products End -->
-
-  <!-- Clients Start -->
-  <div class="section pt-0">
-    <div class="container">
-      <div class="row no-gutters">
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-              <img src="assets/img/clients/1.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/2.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/3.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/4.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/5.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/6.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/7.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/8.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/9.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/10.html" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/11.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/12.png" alt="client">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- Clients End -->
 @endsection

@@ -1,6 +1,71 @@
 @extends('klien.layout.App')
 
 @section('content')
+  <!-- Subheader Start -->
+  <div class="sigma_subheader subheader-lg dark-overlay primary-overlay bg-cover bg-norepeat" style="background-image: url(assets/img/banner/4.jpg)">
+
+    <img src="assets/img/textures/3.png" class="texture-3" alt="texture">
+
+    <!-- Top Left Wave -->
+    <div class="sigma_subheader-shape circles">
+      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
+      <div class="circle circle-sm circle-2 bg-white"></div>
+      <div class="circle circle-md circle-3 secondary-bg"></div>
+    </div>
+
+    <!-- Bottom Wave -->
+    <div class="sigma_subheader-shape waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+
+    <div class="sigma_subheader-inner">
+
+      <div class="sigma_subheader-slider">
+
+        <!-- Banner Item Start -->
+        <div class="sigma_banner-slider-inner">
+          <div class="sigma_banner-text">
+            <div class="container">
+              <div class="row align-items-center justify-content-center">
+                <div class="col-lg-8 text-center">
+                  <div class="mb-0 section-title">
+                    <h6 class="subtitle">About Us</h6>
+                    <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
+                    <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Banner Item End -->
+
+        <!-- Banner Item Start -->
+        <div class="sigma_banner-slider-inner">
+          <div class="sigma_banner-text">
+            <div class="container">
+              <div class="row align-items-center justify-content-center">
+                <div class="col-lg-8 text-center">
+                  <div class="mb-0 section-title">
+                    <h6 class="subtitle">About Us</h6>
+                    <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
+                    <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Banner Item End -->
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Subheader End -->
+
   <!-- Icons Start -->
   <div class="section section-padding mt-negative">
     <div class="container">
@@ -81,7 +146,7 @@
           <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years,
             sometimes by accident, sometimes on purpose (injected humour and the like). If you are going to use a passage of Lorem Ipsum.</p>
           <div class="section-button">
-            <a href="contact-us.html" class="sigma_btn-custom btn-pill">Read More</a>
+            <a href="/contact_us" class="sigma_btn-custom btn-pill">Read More</a>
           </div>
         </div>
 
@@ -108,19 +173,20 @@
     <div class="container-fluid">
 
       <div class="row">
-
+      @foreach($kategori as $item)
         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
           <a href="#" class="sigma_service style-4">
             <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/1.jpg" alt="service">
+              <img src="{{ asset('post-images/'. $item->foto) }}" style="width:350px; height:200px" alt="service">
             </div>
             <div class="sigma_service-body">
-              <h5>T-shirt Printing</h5>
+              <h5>{{ $item->kategori_produk }}</h5>
             </div>
           </a>
         </div>
+      @endforeach
 
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+        {{-- <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
           <a href="#" class="sigma_service style-4">
             <div class="sigma_service-thumb">
               <img src="assets/img/services/lg/2.jpg" alt="service">
@@ -173,7 +239,7 @@
               <h5>Package Design</h5>
             </div>
           </a>
-        </div>
+        </div> --}}
 
       </div>
 
@@ -339,25 +405,26 @@
         <div class="sigma_related-slider">
 
           <!-- Product Start -->
-          <div class="sigma_product">
-            <div class="sigma_product-badge sigma_badge-featured">
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="sigma_product-thumb">
-              <a href="product-single.html"><img src="assets/img/products/1.jpg" alt="product"></a>
-            </div>
-            <div class="sigma_product-body">
-              <h5 class="sigma_product-title"> <a href="product-single.html">Tshirt Design</a> </h5>
-              <div class="sigma_product-price">
-                <span>29$</span>
+          @foreach($produk as $item)
+            <div class="sigma_product">
+              <div class="sigma_product-badge sigma_badge-featured">
+                <i class="fa fa-star"></i>
               </div>
-              <a href="product-single.html" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
-
+              <div class="sigma_product-thumb">
+                <a href="{{ url('/details_product',$item) }}"><img src="{{ asset('post-images/'. $item->foto) }}" style="width:350px; height:270px" alt="product"></a>
+              </div>
+              <div class="sigma_product-body">
+                <h5 class="sigma_product-title"> <a href="{{ url('/details_product',$item) }}">{{ $item->nama_produk }}</a> </h5>
+                <div class="sigma_product-price">
+                  <span>Rp {{ number_format($item->harga) }}</span>
+                </div>
+                <a href="{{ url('/details_product',$item) }}" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
+              </div>
             </div>
-          </div>
+          @endforeach
           <!-- Product End -->
 
-          <!-- Product Start -->
+          {{-- <!-- Product Start -->
           <div class="sigma_product">
             <div class="sigma_product-thumb">
               <a href="product-single.html"><img src="assets/img/products/2.jpg" alt="product"></a>
@@ -410,7 +477,7 @@
 
             </div>
           </div>
-          <!-- Product End -->
+          <!-- Product End --> --}}
 
         </div>
         <!-- Products End -->
@@ -458,46 +525,6 @@
   </div>
   <!-- Instagram End -->
 
-  <!-- Map Start -->
-  <div class="section pt-0">
-    <div class="container">
-
-      <div class="sigma_map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081493!2d2.292292615201654!3d48.85837360866272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sEiffel%20Tower!5e0!3m2!1sen!2sin!4v1571115084828!5m2!1sen!2sin"
-          height="400" allowfullscreen=""></iframe>
-        <div class="sigma_contact-info">
-          <h3 class="text-white">Contact Details</h3>
-          <div class="sigma_contact-info-item">
-            <h6>Location</h6>
-            <p>121 King Street, Melbourne Victoria</p>
-            <p>3000, Autstralia</p>
-          </div>
-          <div class="sigma_contact-info-item">
-            <h6>Mail Box</h6>
-            <p>phantom.info@gmail.com</p>
-            <p>etchenetomi.info@gmail.com</p>
-          </div>
-          <div class="sigma_contact-info-item">
-            <h6>Mail Box</h6>
-            <p>(+555) 666 777 888 999</p>
-            <p>(+555) 666 777 888 999</p>
-          </div>
-          <div class="sigma_contact-info-item">
-            <ul class="sigma_sm">
-              <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-              <li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
-              <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-              <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- Map End -->
-
   <!-- Blog start -->
   <div class="section section-padding pt-0">
     <div class="container">
@@ -509,168 +536,50 @@
 
       <div class="row">
 
-        <!-- Article Start -->
-        <div class="col-lg-6">
-          <article class="sigma_post">
-            <div class="sigma_post-thumb">
-              <a href="blog-details.html">
-                <img src="assets/img/blog/md/1.jpg" alt="post">
-              </a>
-            </div>
-            <div class="sigma_post-body">
-              <div class="sigma_post-meta">
-                <div class="sigma_post-categories">
-                  <a href="blog-details.html" class="sigma_post-category">T-shirt Design</a>
-                </div>
-                <a href="blog-details.html" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
+        <!-- Article Start -->      
+        @foreach ($blog as $item)
+          <div class="col-lg-6">
+            <article class="sigma_post">
+              <div class="sigma_post-thumb">
+                <a href="{{ url('/details_blog',$item) }}">
+                  <img src="{{ asset('post-images/'. $item->foto) }}" style="width:700px; height:350px" alt="post">
+                </a>
               </div>
-              <h5> <a href="blog-details.html">How to relax all day without additives</a> </h5>
-            </div>
-          </article>
-        </div>
+              <div class="sigma_post-body">
+                <div class="sigma_post-meta">
+                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
+                </div>
+                <h5> <a href="{{ url('/details_blog',$item) }}">{{ $item->nama_blog }}</a> </h5>
+                <p>{!! $deskripsi = substr($item->deskripsi, 0, 400) !!} <a href="{{ url('/details_blog',$item) }}">...Read more</a></p>
+              </div>
+            </article>
+          </div>
+        @endforeach
         <!-- Article End -->
 
         <!-- Article Start -->
-        <div class="col-lg-6">
+        {{-- @foreach ($blog as $item)
+          <div class="col-lg-6">
 
-          <article class="sigma_post sigma_post-list list-sm">
-            <div class="sigma_post-thumb">
-              <a href="blog-details.html">
-                <img src="assets/img/blog/md/2.jpg" alt="post">
-              </a>
-            </div>
-            <div class="sigma_post-body">
-              <div class="sigma_post-meta">
-                <div class="sigma_post-categories">
-                  <a href="blog-details.html" class="sigma_post-category">T-shirt Design</a>
-                </div>
-                <a href="blog-details.html" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
+            <article class="sigma_post sigma_post-list list-sm">
+              <div class="sigma_post-thumb">
+                <a href="{{ url('/details_blog',$item) }}">
+                  <img src="{{ asset('post-images/'. $item->foto) }} " alt="post">
+                </a>
               </div>
-              <h5> <a href="blog-details.html">How to build a successful digital marketing agency?</a> </h5>
-            </div>
-          </article>
-
-          <article class="sigma_post sigma_post-list list-sm">
-            <div class="sigma_post-thumb">
-              <a href="blog-details.html">
-                <img src="assets/img/blog/md/3.jpg" alt="post">
-              </a>
-            </div>
-            <div class="sigma_post-body ">
-              <div class="sigma_post-meta">
-                <div class="sigma_post-categories">
-                  <a href="blog-details.html" class="sigma_post-category">T-shirt Design</a>
+              <div class="sigma_post-body">
+                <div class="sigma_post-meta">
+                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
                 </div>
-                <a href="blog-details.html" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
+                <h5> <a href="{{ url('/details_blog',$item) }}">{{ $item->nama_blog }}</a> </h5>
               </div>
-              <h5> <a href="blog-details.html">How to build a successful digital marketing agency?</a> </h5>
-            </div>
-          </article>
-
-          <article class="sigma_post sigma_post-list list-sm">
-            <div class="sigma_post-thumb">
-              <a href="blog-details.html">
-                <img src="assets/img/blog/md/4.jpg" alt="post">
-              </a>
-            </div>
-            <div class="sigma_post-body ">
-              <div class="sigma_post-meta">
-                <div class="sigma_post-categories">
-                  <a href="blog-details.html" class="sigma_post-category">T-shirt Design</a>
-                </div>
-                <a href="blog-details.html" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
-              </div>
-              <h5> <a href="blog-details.html">How to build a successful digital marketing agency?</a> </h5>
-            </div>
-          </article>
-
-        </div>
+            </article>
+          </div>
+        @endforeach --}}
         <!-- Article End -->
 
       </div>
     </div>
   </div>
   <!-- Blog End -->
-
-  <!-- Clients Start -->
-  <div class="section pt-0">
-    <div class="container">
-      <div class="row no-gutters">
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-              <img src="assets/img/clients/1.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/2.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/3.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/4.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/5.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/6.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/7.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/8.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/9.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/10.html" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/11.png" alt="client">
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 col-6 p-0">
-          <div class="sigma_client">
-            <img src="assets/img/clients/12.png" alt="client">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- Clients End -->
 @endsection

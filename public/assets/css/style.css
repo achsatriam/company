@@ -7491,3 +7491,139 @@ td.remove {
   background-color: #f0fff0;
   color: #61be66;
 }
+
+/* wa */
+.float {
+  cursor: pointer;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white !important;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 9999999999;
+}
+
+.my-float {
+  margin-top: 16px;
+}
+
+.y {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+  color: #ffffff7d;
+}
+
+#wabox {
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  bottom: 90px;
+  right: 18px;
+  width: 280px;
+  -webkit-filter: drop-shadow(2px 2px 6px rgba(0,0,0,.3));
+  -moz-filter: drop-shadow(2px 2px 6px rgba(0,0,0,.3));
+  -ms-filter: drop-shadow(2px 2px 6px rgba(0,0,0,.3));
+  -o-filter: drop-shadow(2px 2px 6px rgba(0,0,0,.3));
+  filter: drop-shadow(2px 2px 6px rgba(0,0,0,.3));
+}
+
+.wahead {
+  padding: 15px;
+  background: #075e54;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.waimg {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-image: url(/post-images/ppwa.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ol {
+  border: 2px solid #075e54;
+  position: absolute;
+  top: 51px;
+  left: 50px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #25d366;
+}
+
+.wans {
+  position: absolute;
+  top: 17px;
+  left: 73px;
+}
+
+.waname {
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+}
+
+.wasub {
+  font-size: 10px;
+  color: white;
+}
+
+.wabody {
+  height: 130px;
+  background-image: url(/post-images/wabg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.watxt {
+  padding: 15px;
+  background: white;
+  display: inline-block;
+  font-size: 13px;
+  margin: 13px 0 0 17px;
+  border-radius: 4px;
+  color: black;
+}
+
+.pnh {
+  width: 0;
+  position: relative;
+  left: 5px;
+  top: -89px;
+  border: 7px solid;
+  border-color: white white transparent transparent;
+}
+
+.wafooter {
+  padding: 10px;
+  background: #ffffff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.wafooter textarea {
+  width: 230px;
+  border-radius: 3px;
+  resize: none;
+}
+
+.wafooter i {
+  margin-left: 5px;
+  position: relative;
+  bottom: 13px;
+  font-size: 20px;
+  cursor: pointer;
+}

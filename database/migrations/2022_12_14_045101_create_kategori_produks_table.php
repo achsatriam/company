@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama_produk');
-            $table->double('harga');
-            $table->string('status');
-            $table->string('show');
-            $table->bigInteger('kategori_produk_id');
+        Schema::create('kategori_produks', function (Blueprint $table) {
+            $table->id();
+            $table->string('kategori_produk');
             $table->string('foto', 300);
-            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produks');
+        Schema::dropIfExists('kategori_produks');
     }
 };
