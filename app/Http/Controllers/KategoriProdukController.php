@@ -44,12 +44,8 @@ class KategoriProdukController extends Controller
         ]);
 
         $kategori_produk= new KategoriProduk();
-        $kategori_produk->kategori_produk=$request->kategori_produk;
 
-        if ($request->file('foto')) {
-            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $kategori_produk->foto = $request->file('foto')->getClientOriginalName();  
-        }
+        $kategori_produk->kategori_produk=$request->kategori_produk;
 
         $kategori_produk->save();
 
@@ -94,13 +90,8 @@ class KategoriProdukController extends Controller
         ]);
 
         $kategori_produk = KategoriProduk::find($id);
+        
         $kategori_produk->kategori_produk=$request->kategori_produk;
-
-        if ($request->file('foto')) {
-            File::delete('post-images/'. $kategori_produk->foto);
-            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $kategori_produk->foto = $request->file('foto')->getClientOriginalName();  
-        }
 
         $kategori_produk->update();
         return redirect('kategori_produk')->with('success', 'Kategori_produk berhasil diupdate!');
@@ -114,7 +105,8 @@ class KategoriProdukController extends Controller
      */
     public function destroy($id)
     {
-        KategoriProduk::destroy($id);
-        return response()->json(['status' => 'Kategori_produk Berhasil di hapus!']);
+        $kategori_produk = KategoriProduk::find($id);
+        $kategori_produk->delete();
+        return response()->json(['status' => 'Kategori Berhasil di hapus!']);
     }
 }

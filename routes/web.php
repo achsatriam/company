@@ -18,28 +18,28 @@ use App\Http\Controllers\KlienController;
 |
 */
 
-//partex
-//Home
-Route::get('/', [KlienController::class, 'HomePage']);
+    //partex
+    //Home
+    Route::get('/', [KlienController::class, 'HomePage']);
 
-//Blog
-Route::get('/list_blog', [KlienController::class, 'ListBlog'])->name('list_blog');
+    //Blog
+    Route::get('/list_blog', [KlienController::class, 'ListBlog'])->name('list_blog');
 
-Route::get('/details_blog/{blog}', [KlienController::class, 'DetailsBlog']);
+    Route::get('/details_blog/{blog}', [KlienController::class, 'DetailsBlog']);
 
-//Shop
-Route::get('/list_product', [KlienController::class, 'ListProduct'])->name('list_product');
+    //Product
+    Route::get('/list_product', [KlienController::class, 'ListProduct'])->name('list_product');
 
-Route::get('/details_product/{produk}', [KlienController::class, 'DetailsProduct']);
+    Route::get('/details_product/{produk}', [KlienController::class, 'DetailsProduct']);
 
-//How to order
-Route::get('/how_to_order', [KlienController::class, 'HowToOrder']);
+    //How to order
+    Route::get('/how_to_order', [KlienController::class, 'HowToOrder']);
 
-//About us
-Route::get('/about_us', [KlienController::class, 'AboutUs']);
+    //About us
+    Route::get('/about_us', [KlienController::class, 'AboutUs']);
 
-//Contact us
-Route::get('/contact_us', [KlienController::class, 'ContactUs'])->name('contact');
+    //Contact us
+    Route::get('/contact_us', [KlienController::class, 'ContactUs'])->name('contact');
 
 
 
@@ -75,7 +75,7 @@ Route::get('kategori_produk/edit/{id}', [KategoriProdukController::class, 'edit'
 
 Route::post('kategori_produk/update/{id}', [KategoriProdukController::class, 'update']);
 
-Route::delete('kategori_produk/{kategori}', [KategoriProdukController::class, 'destroy']);
+Route::delete('kategori_produk/{id}', [KategoriProdukController::class, 'destroy']);
 
 //Blog
 

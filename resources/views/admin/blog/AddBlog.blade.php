@@ -39,6 +39,15 @@
                 </div>
               </div>
               <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-default-name">Tanggal blog</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" @error('nama_blog') is-invalid @enderror" value="{{ old('tanggal_blog') }}" name="tanggal_blog">
+                    @error('tanggal_blog')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+              </div>
+              <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-company">Show Home</label>
                 <div class="col-sm-10">
                   <div class="form-check form-switch mb-2">

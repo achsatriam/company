@@ -21,11 +21,11 @@
 
     <div class="main-container" style="margin-right: 100px; margin-left: 100px">
       <div class="sigma_subheader-inner">
-        <h1>Blog</h1>
+        <h1>product</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home Page</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            <li class="breadcrumb-item active" aria-current="page">product</li>
           </ol>
         </nav>
       </div>
@@ -45,7 +45,7 @@
             <!-- Search Widget Start -->
             <div class="sidebar-widget widget-search">
               <h5 class="widget-title">Search</h5>
-              <form method="get" action="{{ route('list_blog') }}">
+              <form method="get" action="{{ route('list_product') }}">
                 <div class="sigma_search-adv-input">
                   <input type="text" value="{{ request()->input('search', old('search')) }}" class="form-control" placeholder="search" name="search">
                   <input type="text" class="form-control" name="category" hidden value="{{request()->category}}">
@@ -60,7 +60,7 @@
               <h5 class="widget-title"> Our Categories </h5>
               <ul class="sidebar-widget-list">
                 @foreach ($kategoris as $item)
-                  <li> <a style="{{(request()->category == $item->id)?'color: #61be66;':''}}" href="{{ route('list_blog', ["category"=>$item->id, "search"=>request()->search]) }}"> {{ $item->kategori_blog }} </a> </li>
+                  <li> <a style="{{(request()->category == $item->id)?'color: #61be66;':''}}" href="{{ route('list_product', ["category"=>$item->id, "search"=>request()->search]) }}"> {{ $item->kategori_produk }} </a> </li>
                 @endforeach
               </ul>
 
@@ -70,31 +70,25 @@
         </div>
         <div class="col-8">
           <div class="row">
-            @foreach ($blogs as $item)
-            <div class="col-md-4">
-              <article class="sigma_post">
-                <div class="sigma_post-thumb" style="height: 172px">
-                    <a href="{{ url('/details_blog',$item) }}">
-                      <img class="img-fluid" src="{{ asset('post-images/'. $item->foto) }}" alt="post">
-                    </a>
-                </div>
-                <div class="sigma_post-body">
-                    <div class="sigma_post-meta">
-                      <div class="sigma_post-categories">
-                        <a href="blog-details.html" class="sigma_post-category">{{ $item->kategori_blog->kategori_blog }}</a>
-                      </div>
-                      <a href="blog-details.html" class="sigma_post-date"> <i class="far fa-calendar"></i>{{ $item->tanggal_blog }}</a>
+            @foreach($produks as $item)
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                  <div class="sigma_product">
+                    <div class="sigma_product-thumb">
+                      <a href="{{ url('/details_product',$item) }}"><img src="{{ asset('post-images/'. $item->foto) }}" class="img-fluid" style="width:350px; height:200px" alt="product"></a>
                     </div>
-                    <h5> <a href="blog-details.html">{{ $item->nama_blog }}</a> </h5>
+                    <div class="sigma_product-body">
+                      <h5 class="sigma_product-title"> <a href="{{ url('/details_product',$item) }}">{{ $item->nama_produk }}</a> </h5>
+                      <div class="sigma_product-price">
+                        <span>Rp {{ number_format($item->harga) }}</span>
+                      </div>
+                      <a href="{{ url('/details_product',$item) }}" class="sigma_btn-custom btn-sm dark btn-pill">Details</a>
+                    </div>
+                  </div>
                 </div>
-                </article>
-              </div>
-              <!-- Article End -->
-              
               @endforeach
             </div>
          </div>
-      </div>
+        </div>
         <!-- Sidebar End -->
        
         

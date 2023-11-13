@@ -28,7 +28,7 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori_produk = KategoriProduk::all();
-        return view('admin.produk.Add',compact ('kategori_produk'));
+        return view('admin.produk.AddProduk',compact ('kategori_produk'));
     }
 
     /**
@@ -46,9 +46,11 @@ class ProdukController extends Controller
             'foto' => 'required',
             'deskripsi' => 'required'
         ]);
-        
+
         $produk= new Produk();
+
         $produk->nama_produk=$request->nama_produk;
+
         $produk->harga=$request->harga;
 
         $status='';
@@ -97,7 +99,7 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         $kategori_produk = KategoriProduk::all();
-        return view('admin.produk.Show', compact('produk', 'kategori_produk'));
+        return view('admin.produk.ShowProduk', compact('produk', 'kategori_produk'));
     }
 
     /**
@@ -111,7 +113,7 @@ class ProdukController extends Controller
     {
         $kategori_produk = KategoriProduk::all();
         $produk = Produk::with('kategori_produk')->find($id);
-        return view('admin.produk.Edit', compact('produk', 'kategori_produk'));
+        return view('admin.produk.EditProduk', compact('produk', 'kategori_produk'));
     }
 
     /**
@@ -130,6 +132,11 @@ class ProdukController extends Controller
             'deskripsi' => 'required'
         ]);
 
+        $produk = Produk::find($id);
+
+        $produk->nama_produk=$request->nama_produk;
+        
+        $produk->harga=$request->harga;
         
         $status='';
         if($request->status)
@@ -146,15 +153,11 @@ class ProdukController extends Controller
         }else{
             $show='Nonaktif';
         }
-
-        $produk = Produk::find($id);
-
-        $produk->status = $status;
         
-        $produk->nama_produk=$request->nama_produk;
-        $produk->harga=$request->harga;
         $produk->status=$status;
+
         $produk->show=$show;
+
         $produk->kategori_produk_id=$request->kategori_produk_id;
 
         if ($request->file('foto')) {
@@ -176,9 +179,11 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($produk)
+    public function destroy($id)
     {
-        Produk::destroy($produk);
+        $produk = Produk::find($id);
+        File::delete('post-images/' . $produk->foto); 
+        $produk->delete();
         return response()->json(['status' => 'Produk Berhasil di hapus!']);
     }
 }

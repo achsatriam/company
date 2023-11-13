@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('nama_blog');
+            $table->date('tanggal_blog');
             $table->string('show');
             $table->bigInteger('kategori_blog_id');
             $table->string('foto', 300);

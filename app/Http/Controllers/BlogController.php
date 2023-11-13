@@ -41,14 +41,12 @@ class BlogController extends Controller
     {
         $request->validate([
             'nama_blog' => 'required',
-            'foto' => 'required',
+            'tanggal_blog' => 'required',
             'kategori_blog_id' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'foto' => 'required|mimes:jpg,jpeg,png'
         ]);
         
-        $blog= new Blog();
-        $blog->nama_blog=$request->nama_blog;
-
         $show='';
         if($request->show)
         {
@@ -56,9 +54,11 @@ class BlogController extends Controller
         }else{
             $show='Nonaktif';
         }
-
+        
+        $blog= new Blog();
+        $blog->nama_blog=$request->nama_blog;
+        $blog->tanggal_blog=$request->tanggal_blog;
         $blog->show=$show;
-
         $blog->kategori_blog_id=$request->kategori_blog_id;
 
         if ($request->file('foto')) {
@@ -110,12 +110,18 @@ class BlogController extends Controller
     {
         $request->validate([
             'nama_blog' => 'required',
+            'tanggal_blog' => 'required',
             'kategori_blog_id'  => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'foto' => 'mimes:jpg,jpeg,png'
         ]);
 
+        
         $blog = Blog::find($id);
+
         $blog->nama_blog=$request->nama_blog;
+
+        $blog->tanggal_blog=$request->tanggal_blog;
 
         $show='';
         if($request->show)
@@ -126,7 +132,7 @@ class BlogController extends Controller
         }
 
         $blog->show=$show;
-
+        
         $blog->kategori_blog_id=$request->kategori_blog_id;
 
         if ($request->file('foto')) {
@@ -150,7 +156,9 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        Blog::destroy($id);
+        $blog = Blog::find($id);
+        File::delete('post-images/' . $blog->foto); 
+        $blog->delete();
         return response()->json(['status' => 'Blog Berhasil di hapus!']);
     }
 }

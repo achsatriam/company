@@ -14,17 +14,18 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data / Produk / </span> Kategori</h4>
 
     <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <a href="{{ url('kategori_produk/Add') }}">
+          <button type="button" class="btn btn-success">Add</button>
+        </a>
+      </div>
       <div class="card-body">
         <div class="table-responsive text-nowrap">
-          <a href="{{ url('kategori_produk/Add') }}">
-            <button type="button" class="btn btn-outline-success">Add</button>
-          </a>
-          <table class="table table-bordered">
+          <table class="table table-striped" id="myTable">
             <thead>
               <tr>
-                <th>Foto</th>
                 <th>Kategori</th>
-                <th>Aksi</th>
+                <th class="text-center">Aksi</th>
               </tr>
             </thead>
               <tbody>
@@ -32,23 +33,22 @@
                   <tr>
                     <input type="hidden" class="delete_id" value="{{ $item->id }}">
                     <td>
-                      <img class="zoom" src="{{ asset('post-images/'. $item->foto) }}" width="100px" alt="">
-                    </td>
-                    <td>
                       <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $item->kategori_produk }}</strong>
                     </td>
-                    <td style="display: flex; gap: 10px;">
-                      <a href="{{ url('/kategori_produk/' . $item->id)}}">
-                        <button type="button" class="btn btn-outline-info">Show</button>
-                      </a>
-                      <a href="{{ url('kategori_produk/edit',  $item->id )  }}">
-                        <button type="button" class="btn btn-outline-primary">Edit</button>
-                      </a>
-                      <form action="{{ url('kategori_produk' .  '/' . $item->kategori_produk) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
-                      </form>
+                    <td>
+                      <div class="d-flex justify-content-center gap-2 align-items-center">
+                        <a href="{{ url('/kategori_produk/' . $item->id)}}">
+                          <button type="button" class="btn btn-outline-info">Show</button>
+                        </a>
+                        <a href="{{ url('kategori_produk/edit',  $item->id )  }}">
+                          <button type="button" class="btn btn-outline-primary">Edit</button>
+                        </a>
+                        <form class="m-0" method="post" action="{{ url('kategori_produk' .  '/' . $item->kategori_produk) }}">
+                          {{ method_field('DELETE') }}
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 @endforeach
@@ -91,7 +91,7 @@
                       };
                       $.ajax({
                           type: "DELETE",
-                          url: 'kategori/' + deleteid,
+                          url: 'kategori_produk/' + deleteid,
                           data: data,
                           success: function (response) {
                               swal(response.status, {

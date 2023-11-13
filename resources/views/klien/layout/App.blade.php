@@ -31,16 +31,16 @@
   <div id="wabox">
     <i class="fas fa-times y"></i>
     <div class="wahead">
-        <div class="waimg"></div>
+        <div class="waimg" ></div>
         <div class="ol"></div>
         <div class="wans">
-            <div class="waname">Yunus</div>
+            <div class="waname">Ach Satria M</div>
         <div class="wasub">Chat with us on WhatsApp</div>
         </div>
     </div>
     <div class="wabody">
         <div class="watxt">
-          Haloo 👋<br>Saya sbg Admin Creaprint<br>Ada yang bisa saya bantu?
+          Haloo 👋<br>Saya sbg Admin Partex<br>Ada yang bisa saya bantu?
         </div>
         <div class="pnh"> </div>
     </div>
@@ -60,37 +60,18 @@
     <a class="navbar-brand" href="/"> <img src="{{ asset('assets/img/logo-dark.png')}}" alt="logo"> </a>
 
     <!-- Menu -->
-    <ul>
+    <ul class="navbar-nav">
       <li class="menu-item">
         <a href="/">Home Page</a>
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">Blog</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a href="/list_blog">List Blog</a> </li>
-          <li class="menu-item"> <a href="/details_blog">Details Blog</a> </li>
-        </ul>
+      <li class="menu-item">
+        <a href="/list_blog">Blog</a>
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">Shop</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a href="/list_product">List Product</a> </li>
-          <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
-        </ul>
+      <li class="menu-item">
+        <a href="/list_produk">Product</a>
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">How to order</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a href="/list_product">List Product</a> </li>
-          <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
-        </ul>
-      </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">About us</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a href="/list_product">List Product</a> </li>
-          <li class="menu-item"> <a href="/details_product">Details Product</a> </li>
-        </ul>
+      <li class="menu-item">
+        <a href="/about_us">About us</a>
       </li>
       <li class="menu-item">
         <a href="/contact_us">Contact Us</a>
@@ -106,7 +87,7 @@
 
       <!-- Middle Header Start -->
       <div class="sigma_header-middle">
-          <div class="container">
+          <div class="main-container" style="margin-right: 100px; margin-left: 100px">
               <nav class="navbar">
 
                   <!-- Logo Start -->
@@ -126,10 +107,7 @@
                         <a href="/list_blog">Blog</a>
                       </li>
                       <li class="menu-item">
-                        <a href="/list_product">Produk</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="/how_to_order">How to order</a>
+                        <a href="/list_produk">Product</a>
                       </li>
                       <li class="menu-item">
                         <a href="/about_us">About us</a>
@@ -163,7 +141,7 @@
 
       <!-- Middle Header Start -->
       <div class="sigma_header-middle">
-        <div class="container">
+        <div class="main-container" style="margin-right: 100px; margin-left: 100px">
           <nav class="navbar">
 
             <!-- Logo Start -->
@@ -183,10 +161,7 @@
                 <a href="/list_blog">Blog</a>
               </li>
               <li class="menu-item">
-                <a href="/list_product">Produk</a>
-              </li>
-              <li class="menu-item">
-                <a href="/how_to_order">How to order</a>
+                <a href="/list_product">Product</a>
               </li>
               <li class="menu-item">
                 <a href="/about_us">About us</a>
@@ -221,7 +196,7 @@
 
   <!-- Clients Start -->
   <div class="section pt-0">
-    <div class="container">
+    <div class="main-container" style="margin-right: 100px; margin-left: 100px">
       <div class="row no-gutters">
 
         <div class="col-lg-2 col-md-3 col-6 p-0">
@@ -317,7 +292,7 @@
 
     <!-- Middle Footer -->
     <div class="sigma_footer-middle">
-      <div class="container">
+      <div class="main-container" style="margin-right: 100px; margin-left: 100px">
         <div class="row">
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
             <img src="{{ asset('assets/img/logo.png')}}" class="mb-4" alt="logo">
@@ -346,23 +321,13 @@
               <li> <a href="/list_blog">Blog</a> </li>
             </ul>
           </div>
-          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 d-none d-lg-block footer-widget">
-            <h5 class="widget-title">Top Categories</h5>
-            <ul>
-              <li> <a href="#">Pillow</a> </li>
-              <li> <a href="#">Book Covers</a> </li>
-              <li> <a href="#">Papers</a> </li>
-              <li> <a href="#">Cover Van</a> </li>
-              <li> <a href="#">Pens</a> </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
 
     <!-- Footer Bottom -->
     <div class="sigma_footer-bottom">
-      <div class="container">
+      <div class="main-container" style="margin-right: 100px; margin-left: 100px">
         <div class="sigma_footer-copyright">
           <p> Copyright © 2020. All Rights Reserved. </p>
         </div>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produk;
 use App\Models\Blog;
-use App\Models\KategoriProduk;
+use App\Models\Produk;
 use App\Models\KategoriBlog;
+use App\Models\KategoriProduk;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +43,8 @@ class KlienController extends Controller
 
     public function DetailsBlog(Blog $blog)
     {
-        return view('klien/blog/DetailsBlog', compact('blog')); 
+        $related_blog = Blog::all()->where('kategori_blog_id', '=', $blog->kategori_blog_id);
+        return view('klien/blog/DetailsBlog', compact('blog', 'related_blog')); 
     }
 
     public function ListProduct(Request $request)
@@ -65,18 +66,13 @@ class KlienController extends Controller
         
         $kategoris = KategoriProduk::all();
 
-        return view('klien/shop/ListProduct', compact('produks', 'kategoris'));
+        return view('klien/product/ListProduct', compact('produks', 'kategoris'));
     }
     
     public function DetailsProduct(Produk $produk)
     {
         $related_produk = Produk::all()->where('kategori_produk_id', '=', $produk->kategori_produk_id);
-        return view('klien/shop/DetailsProduct', compact('produk', 'related_produk'));
-    }
-
-    public function HowToOrder()
-    {
-        return view('klien/HowToOrder');
+        return view('klien/product/DetailsProduct', compact('produk', 'related_produk'));
     }
 
     public function AboutUs()

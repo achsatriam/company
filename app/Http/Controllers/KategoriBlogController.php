@@ -44,12 +44,8 @@ class KategoriBlogController extends Controller
         ]);
 
         $kategori_blog= new KategoriBlog();
-        $kategori_blog->kategori_blog=$request->kategori_blog;
 
-        if ($request->file('foto')) {
-            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $kategori_blog->foto = $request->file('foto')->getClientOriginalName();  
-        }
+        $kategori_blog->kategori_blog=$request->kategori_blog;
 
         $kategori_blog->save();
 
@@ -94,13 +90,8 @@ class KategoriBlogController extends Controller
         ]);
 
         $kategori_blog = KategoriBlog::find($id);
-        $kategori_blog->kategori_blog=$request->kategori_blog;
 
-        if ($request->file('foto')) {
-            File::delete('post-images/'. $kategori_blog->foto);
-            $request->file('foto')->move('post-images/', $request->file('foto')->getClientOriginalName());
-            $kategori_blog->foto = $request->file('foto')->getClientOriginalName();  
-        }
+        $kategori_blog->kategori_blog=$request->kategori_blog;
 
         $kategori_blog->update();
 
@@ -115,7 +106,8 @@ class KategoriBlogController extends Controller
      */
     public function destroy($id)
     {
-        KategoriBlog::destroy($id);
+        $kategori_blog = KategoriBlog::find($id);
+        $kategori_blog->delete();
         return response()->json(['status' => 'Kategori blog Berhasil di hapus!']);
     }
 }

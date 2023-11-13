@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Harga</label>
+                <label class="col-sm-2 col-form-label" for="basic-default-company">Bayar</label>
                 <div class="col-sm-10">
                   <input
                     type="text"

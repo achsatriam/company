@@ -1,64 +1,6 @@
 @extends('klien.layout.App')
 
 @section('content')
-  <!-- Header Start -->
-  <header class="sigma_header header-1 can-sticky header-absolute header-light">
-
-    <!-- Middle Header Start -->
-    <div class="sigma_header-middle">
-      <div class="container">
-        <nav class="navbar">
-
-          <!-- Logo Start -->
-          <div class="sigma_logo-wrapper">
-            <a class="navbar-brand" href="index-2.html">
-              <img src="{{ asset('assets/img/logo.png')}}" alt="logo">
-            </a>
-          </div>
-          <!-- Logo End -->
-
-          <!-- Menu -->
-          <ul class="navbar-nav">
-            <li class="menu-item">
-              <a href="/">Home Page</a>
-            </li>
-            <li class="menu-item">
-              <a href="/list_blog">Blog</a>
-            </li>
-            <li class="menu-item">
-              <a href="/list_product">Produk</a>
-            </li>
-            <li class="menu-item">
-              <a href="/how_to_order">How to order</a>
-            </li>
-            <li class="menu-item">
-              <a href="/about_us">About us</a>
-            </li>
-            <li class="menu-item">
-              <a href="/contact_us">Contact Us</a>
-            </li>
-          </ul>
-
-          <!-- Controls -->
-          <a href="contact-us.html" class="sigma_btn-custom btn-sm light btn-pill d-none d-lg-block">Get a Quote</a>
-
-          <!-- Mobile Toggler -->
-          <div class="aside-toggler style-2 aside-trigger-left">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </nav>
-      </div>
-    </div>
-    <!-- Middle Header End -->
-
-  </header>
-  <!-- Header End -->
-
     <!-- Subheader Start -->
     <div class="sigma_subheader primary-bg">
 

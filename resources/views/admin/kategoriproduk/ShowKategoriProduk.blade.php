@@ -25,14 +25,6 @@
           <div class="card-body">
             <form action="" method="" enctype="multipart/form-data">
               <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Foto Kategori  :</label>
-                <div class="col-sm-10">
-                 <div class="form-check form-switch mb-2">
-                   <p><img class="zoom" src="{{ asset('post-images/'. $kategori_produk->foto) }}" width="500px" alt=""></p>
-                 </div>
-                </div>
-              </div>
-              <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-company">Jenis Kategori :</label>
                 <div class="col-sm-10">
                   <div class="form-check form-switch mb-2">

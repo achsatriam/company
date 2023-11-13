@@ -14,19 +14,21 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Data /</span> Blog</h4>
 
     <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <a href="{{ url('blog/Add') }}">
+          <button type="button" class="btn btn-success">Add</button>
+        </a>
+      </div>
       <div class="card-body">
         <div class="table-responsive text-nowrap">
-          <a href="{{ url('blog/Add') }}">
-            <button type="button" class="btn btn-outline-success">Add</button>
-          </a>
-          <table class="table table-bordered">
+          <table class="table table-striped" id="myTable">
             <thead>
               <tr>
                 <th>Foto</th>
                 <th>Nama Blog</th>
                 <th>Show Home</th>
                 <th>Jenis Kategori</th>
-                <th>Aksi</th>
+                <th class="text-center">Aksi</th>
               </tr>
             </thead>
               <tbody>
@@ -47,18 +49,20 @@
                       @endif
                     </td>
                     <td>{{ $item->kategori_blog->kategori_blog }}</td>
-                    <td style="display: flex; gap: 10px;">
-                      <a href="{{ url('/blog/' . $item->id)}}">
-                        <button type="button" class="btn btn-outline-info">Show</button>
-                      </a>
-                      <a href="{{ url('blog/edit',  $item->id )  }}">
-                        <button type="button" class="btn btn-outline-primary">Edit</button>
-                      </a>
-                      <form action="{{ url('blog' .  '/' . $item->id) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
-                      </form>
+                    <td>
+                      <div class="d-flex justify-content-center gap-2 align-items-center">
+                        <a href="{{ url('/blog/' . $item->id)}}">
+                          <button type="button" class="btn btn-outline-info">Show</button>
+                        </a>
+                        <a href="{{ url('blog/edit',  $item->id )  }}">
+                          <button type="button" class="btn btn-outline-primary">Edit</button>
+                        </a>
+                        <form class="m-0" method="post" action="{{ url('blog' .  '/' . $item->blog) }}">
+                          {{ method_field('DELETE') }}
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-outline-danger btndelete">Delete</button>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 @endforeach

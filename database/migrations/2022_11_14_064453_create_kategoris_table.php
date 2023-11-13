@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_blogs', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori_blog');
+            $table->string('kategori_produk');
+            $table->string('foto', 300);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_blogs');
+        Schema::dropIfExists('kategoris');
     }
 };

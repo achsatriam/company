@@ -37,15 +37,6 @@
                     @enderror
                 </div>
               </div>
-              <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-default-company">Foto</label>
-                <div class="col-sm-10">
-                  <input class="form-control dropify @error('foto') is-invalid @enderror" data-default-file="{{ asset('post-images/'. $kategori_produk->foto) }}" name="foto" type="file" id="foto" onchange="previewImage()"/>
-                  @error('foto')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-              </div>
               <div class="row justify-content-end">
                 <div class="col-sm-10">
                   <button type="submit" value="Save" class="btn btn-success">Update</button>

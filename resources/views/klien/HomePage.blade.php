@@ -1,70 +1,52 @@
 @extends('klien.layout.App')
 
 @section('content')
-  <!-- Subheader Start -->
-  <div class="sigma_subheader subheader-lg dark-overlay primary-overlay bg-cover bg-norepeat" style="background-image: url(assets/img/banner/4.jpg)">
+  <!-- Banner Start -->
+<div class="sigma_banner banner-3">
 
-    <img src="assets/img/textures/3.png" class="texture-3" alt="texture">
+  <div class="sigma_banner-slider">
 
-    <!-- Top Left Wave -->
-    <div class="sigma_subheader-shape circles">
-      <div class="circle circle-lg circle-1 primary-dark-bg"></div>
-      <div class="circle circle-sm circle-2 bg-white"></div>
-      <div class="circle circle-md circle-3 secondary-bg"></div>
-    </div>
-
-    <!-- Bottom Wave -->
-    <div class="sigma_subheader-shape waves">
-      <div class="wave"></div>
-      <div class="wave"></div>
-    </div>
-
-    <div class="sigma_subheader-inner">
-
-      <div class="sigma_subheader-slider">
-
-        <!-- Banner Item Start -->
-        <div class="sigma_banner-slider-inner">
-          <div class="sigma_banner-text">
-            <div class="container">
-              <div class="row align-items-center justify-content-center">
-                <div class="col-lg-8 text-center">
-                  <div class="mb-0 section-title">
-                    <h6 class="subtitle">About Us</h6>
-                    <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
-                    <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
-                  </div>
-                </div>
+    <!-- Banner Item Start -->
+    <div class="sigma_banner-slider-inner dot-pattern bg-cover bg-center bg-norepeat" style="background-image: url('assets/img/banner/3.jpg');">
+      <div class="sigma_banner-text">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-lg-8 text-center">
+              <div class="mb-0 section-title">
+                <h6 class="subtitle">About Us</h6>
+                <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
+                <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
               </div>
             </div>
           </div>
         </div>
-        <!-- Banner Item End -->
-
-        <!-- Banner Item Start -->
-        <div class="sigma_banner-slider-inner">
-          <div class="sigma_banner-text">
-            <div class="container">
-              <div class="row align-items-center justify-content-center">
-                <div class="col-lg-8 text-center">
-                  <div class="mb-0 section-title">
-                    <h6 class="subtitle">About Us</h6>
-                    <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
-                    <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Banner Item End -->
-
       </div>
-
     </div>
+    <!-- Banner Item End -->
+
+    <!-- Banner Item Start -->
+    <div class="sigma_banner-slider-inner dot-pattern bg-cover bg-center bg-norepeat" style="background-image: url('assets/img/banner/2.jpg');">
+      <div class="sigma_banner-text">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-lg-8 text-center">
+              <div class="mb-0 section-title">
+                <h6 class="subtitle">About Us</h6>
+                <h1 class="text-white title">Let Us Help You With All Of Your Printing Needs</h1>
+                <p class="text-white">Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Item End -->
 
   </div>
-  <!-- Subheader End -->
+
+</div>
+<!-- Banner End -->
+
 
   <!-- Icons Start -->
   <div class="section section-padding mt-negative">
@@ -158,94 +140,6 @@
     </div>
   </section>
   <!-- About End -->
-
-  <!-- Services Start -->
-  <div class="section section-padding pt-0">
-
-    <div class="container">
-      <div class="section-title text-center">
-        <h4 class="title">Our Services</h4>
-        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-      </div>
-
-    </div>
-
-    <div class="container-fluid">
-
-      <div class="row">
-      @foreach($kategori as $item)
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="{{ asset('post-images/'. $item->foto) }}" style="width:350px; height:200px" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>{{ $item->kategori_produk }}</h5>
-            </div>
-          </a>
-        </div>
-      @endforeach
-
-        {{-- <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/2.jpg" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>Flyer Printing</h5>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/3.jpg" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>Sticker Printing</h5>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/4.jpg" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>Poster Printing</h5>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/5.jpg" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>Banner Printing</h5>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-          <a href="#" class="sigma_service style-4">
-            <div class="sigma_service-thumb">
-              <img src="assets/img/services/lg/6.jpg" alt="service">
-            </div>
-            <div class="sigma_service-body">
-              <h5>Package Design</h5>
-            </div>
-          </a>
-        </div> --}}
-
-      </div>
-
-    </div>
-  </div>
-  <!-- Services End -->
 
   <!-- Testimonials Start -->
   <section class="section pt-0">
@@ -422,63 +316,6 @@
               </div>
             </div>
           @endforeach
-          <!-- Product End -->
-
-          {{-- <!-- Product Start -->
-          <div class="sigma_product">
-            <div class="sigma_product-thumb">
-              <a href="product-single.html"><img src="assets/img/products/2.jpg" alt="product"></a>
-            </div>
-            <div class="sigma_product-body">
-              <h5 class="sigma_product-title"> <a href="product-single.html">Book Cover</a> </h5>
-              <div class="sigma_product-price">
-                <span>19$</span>
-              </div>
-              <a href="product-single.html" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
-
-            </div>
-          </div>
-          <!-- Product End -->
-
-          <!-- Product Start -->
-          <div class="sigma_product">
-            <div class="sigma_product-badge sigma_badge-sale">
-              25% Off
-            </div>
-            <div class="sigma_product-thumb">
-              <a href="product-single.html"><img src="assets/img/products/3.jpg" alt="product"></a>
-            </div>
-            <div class="sigma_product-body">
-              <h5 class="sigma_product-title"> <a href="product-single.html">Van Cover</a> </h5>
-              <div class="sigma_product-price">
-                <span>19$</span>
-                <span>29$</span>
-              </div>
-              <a href="product-single.html" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
-
-            </div>
-          </div>
-          <!-- Product End -->
-
-          <!-- Product Start -->
-          <div class="sigma_product">
-            <div class="sigma_product-badge sigma_badge-featured">
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="sigma_product-thumb">
-              <a href="product-single.html"><img src="assets/img/products/4.jpg" alt="product"></a>
-            </div>
-            <div class="sigma_product-body">
-              <h5 class="sigma_product-title"> <a href="product-single.html">Polaroid Enhancement</a> </h5>
-              <div class="sigma_product-price">
-                <span>29$</span>
-              </div>
-              <a href="product-single.html" class="sigma_btn-custom btn-sm dark btn-pill">Buy Now</a>
-
-            </div>
-          </div>
-          <!-- Product End --> --}}
-
         </div>
         <!-- Products End -->
 
@@ -535,49 +372,28 @@
       </div>
 
       <div class="row">
-
-        <!-- Article Start -->      
+                <!-- Article Start -->
         @foreach ($blog as $item)
-          <div class="col-lg-6">
-            <article class="sigma_post">
+        <div class="col-lg-4 col-md-6">
+          <article class="sigma_post">
               <div class="sigma_post-thumb">
-                <a href="{{ url('/details_blog',$item) }}">
-                  <img src="{{ asset('post-images/'. $item->foto) }}" style="width:700px; height:350px" alt="post">
-                </a>
+              <a href="{{ url('/details_blog',$item) }}">
+                  <img src="{{ asset('post-images/'. $item->foto) }}" style="width:350px; height:270px" alt="post">
+              </a>
               </div>
               <div class="sigma_post-body">
-                <div class="sigma_post-meta">
-                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
-                </div>
-                <h5> <a href="{{ url('/details_blog',$item) }}">{{ $item->nama_blog }}</a> </h5>
-                <p>{!! $deskripsi = substr($item->deskripsi, 0, 400) !!} <a href="{{ url('/details_blog',$item) }}">...Read more</a></p>
+              <div class="sigma_post-meta">
+                  <div class="sigma_post-categories">
+                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-category">{{ $item->kategori_blog->kategori_blog }}</a>
+                  </div>
+                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i>{{ $item->tanggal_blog }}</a>
               </div>
-            </article>
-          </div>
+              <h5> <a href="{{ url('/details_blog',$item) }}">{{ $item->nama_blog }}</a> </h5>
+              </div>
+          </article>
+        </div>
         @endforeach
-        <!-- Article End -->
-
-        <!-- Article Start -->
-        {{-- @foreach ($blog as $item)
-          <div class="col-lg-6">
-
-            <article class="sigma_post sigma_post-list list-sm">
-              <div class="sigma_post-thumb">
-                <a href="{{ url('/details_blog',$item) }}">
-                  <img src="{{ asset('post-images/'. $item->foto) }} " alt="post">
-                </a>
-              </div>
-              <div class="sigma_post-body">
-                <div class="sigma_post-meta">
-                  <a href="{{ url('/details_blog',$item) }}" class="sigma_post-date"> <i class="far fa-calendar"></i> May 20, 2021</a>
-                </div>
-                <h5> <a href="{{ url('/details_blog',$item) }}">{{ $item->nama_blog }}</a> </h5>
-              </div>
-            </article>
-          </div>
-        @endforeach --}}
-        <!-- Article End -->
-
+  <!-- Blog End -->
       </div>
     </div>
   </div>

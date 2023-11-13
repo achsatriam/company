@@ -93,9 +93,7 @@
           <div class="col mb-3" style="display: flex">
             <label class="col-sm-2 col-form-label" for="basic-default-name">Jenis Kategori</label>
             <div class="col-sm-10">
-                <select name="kategori_produk_id" class="form-select" value="{{ old('kategori_produk_id') }}" id="kategori_produk_id" aria-label="Default select example">
-                <option value="{{ $produk->kategori_produk }}">{{ $produk->kategori_produk->kategori_produk }}</option>
-
+                <select name="kategori_produk_id" class="form-select" id="kategori_produk_id" aria-label="Default select example">
                 @foreach ($kategori_produk as $item)
                   <option value="{{ $item->id }}">{{ $item->kategori_produk }}</option>
                 @endforeach
